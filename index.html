@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A free salary and India income-tax estimate calculator." />
+    <title>PayLens — Salary & Tax Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="PayLens home"><span>◒</span> PayLens</a>
+      <nav aria-label="Main navigation"><a href="#salary">Salary</a><a href="#tax">Tax estimate</a><a href="#about">About</a></nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">Free • private • no sign-up</p>
+        <h1>Know what your<br /><em>pay</em> really means.</h1>
+        <p class="hero-copy">Convert your salary instantly, then estimate your Indian income tax in one clear, calm place.</p>
+        <a class="button button-dark" href="#salary">Calculate my pay <span>↓</span></a>
+        <div class="hero-orb" aria-hidden="true"><span>₹</span></div>
+      </section>
+
+      <section class="calculator-section" id="salary">
+        <div class="section-heading"><p class="eyebrow">01 / Salary converter</p><h2>Turn any pay number into the full picture.</h2></div>
+        <div class="calculator-grid">
+          <form class="panel form-panel" id="salary-form">
+            <label for="salary-amount">Pay amount <span class="required">*</span></label>
+            <div class="input-with-prefix"><span id="salary-symbol">₹</span><input id="salary-amount" name="salary-amount" inputmode="decimal" type="number" min="0" value="1200000" required /></div>
+            <div class="two-col">
+              <div><label for="salary-currency">Currency</label><select id="salary-currency"><option value="INR" selected>INR — Indian rupee</option><option value="USD">USD — US dollar</option><option value="GBP">GBP — British pound</option><option value="EUR">EUR — Euro</option></select></div>
+              <div><label for="salary-period">This amount is</label><select id="salary-period"><option value="year" selected>Per year</option><option value="month">Per month</option><option value="week">Per week</option><option value="hour">Per hour</option></select></div>
+            </div>
+            <div class="two-col"><div><label for="hours-week">Hours / week</label><input id="hours-week" type="number" min="1" max="168" value="40" /></div><div><label for="weeks-year">Weeks / year</label><input id="weeks-year" type="number" min="1" max="52" value="52" /></div></div>
+            <button class="button button-dark full" type="submit">Calculate salary <span>→</span></button>
+          </form>
+          <div class="panel results-panel" aria-live="polite">
+            <div class="result-title"><span>Your estimated pay</span><span class="dot"></span><span id="salary-currency-label">INR</span></div>
+            <div class="big-number" id="annual-result">₹12,00,000</div><p class="annual-label">per year, before taxes</p>
+            <div class="result-list"><div><span>Monthly</span><strong id="monthly-result">₹1,00,000</strong></div><div><span>Weekly</span><strong id="weekly-result">₹23,077</strong></div><div><span>Hourly</span><strong id="hourly-result">₹577</strong></div></div>
+            <p class="result-note">This converts gross pay only. Use the tax estimator below for an India income-tax estimate.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="calculator-section tax-section" id="tax">
+        <div class="section-heading"><p class="eyebrow">02 / India tax estimator</p><h2>A simpler view of your likely tax bill.</h2><p class="section-copy">For resident salaried individuals using India’s new tax regime for FY 2025–26 (AY 2026–27).</p></div>
+        <div class="calculator-grid">
+          <form class="panel form-panel" id="tax-form">
+            <label for="gross-income">Annual gross salary <span class="required">*</span></label>
+            <div class="input-with-prefix"><span>₹</span><input id="gross-income" inputmode="decimal" type="number" min="0" value="1200000" required /></div>
+            <label for="other-deductions">Other eligible deductions</label>
+            <div class="input-with-prefix"><span>₹</span><input id="other-deductions" inputmode="decimal" type="number" min="0" value="0" /></div>
+            <p class="field-help">Only enter deductions permitted in the new regime. The standard ₹75,000 salary deduction is included by default.</p>
+            <label class="check-label"><input id="standard-deduction" type="checkbox" checked /><span>Apply ₹75,000 standard deduction</span></label>
+            <button class="button button-accent full" type="submit">Estimate my tax <span>→</span></button>
+          </form>
+          <div class="panel results-panel tax-results" aria-live="polite">
+            <div class="result-title"><span>Estimated yearly tax</span><span class="dot"></span><span>NEW REGIME</span></div>
+            <div class="big-number" id="tax-result">₹0</div><p class="annual-label" id="tax-caption">including 4% health & education cess</p>
+            <div class="result-list"><div><span>Taxable income</span><strong id="taxable-result">₹11,25,000</strong></div><div><span>Income tax before cess</span><strong id="income-tax-result">₹42,500</strong></div><div><span>Estimated monthly tax</span><strong id="monthly-tax-result">₹3,683</strong></div></div>
+            <p class="result-note">Estimate only—does not include surcharge, capital gains, special income, marginal relief, or every possible deduction.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="about" id="about"><div><p class="eyebrow">Built for clarity</p><h2>No account. No tracking your income.</h2></div><p>PayLens runs entirely in your browser. Tax rules change, so always verify your return with the official Income Tax Department resources or a qualified tax professional.</p></section>
+    </main>
+    <footer><span>© <span id="year"></span> PayLens</span><span>Made for better money decisions</span></footer>
+    <script src="script.js"></script>
+  </body>
+</html>
